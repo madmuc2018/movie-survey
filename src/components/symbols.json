@@ -1,4 +1,5 @@
-{ 
+{
+    "ratingStyles": ["color-circle","color-star","color-emoji","slider","circle","emoji"], 
     "color-circle":{ 
         "empty":[ 
             "far fa-circle fa-2x survey-darkred",

@@ -5,6 +5,8 @@ import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
 import SelectMoviesPage from "./components/SelectMoviesPage/SelectMoviesPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
+import ChooseRatePage from "./components/ChooseRatePage/ChooseRatePage";
+import EmailPage from "./components/EmailPage/EmailPage";
 import RatePage from "./components/RatePage/RatePage";
 import Auth from "./stores/auth";
 
@@ -40,6 +42,8 @@ export default class App extends React.Component {
           <Route exact path="/select" component={SelectMoviesPage} />
           <Route exact path="/common" component={CommonRatePage} />
           <Route exact path="/review" component={ReviewPage} />
+          <Route exact path="/choose" component={ChooseRatePage} />
+          <Route exact path="/email" component={EmailPage} />
           <Route exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
         </Switch>
       </HashRouter>

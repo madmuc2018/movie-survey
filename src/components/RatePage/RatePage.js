@@ -6,8 +6,6 @@ import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
 
-const ratings = ["color-circle","color-star","color-emoji","slider","circle","emoji"];
-
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +32,7 @@ class LoginPage extends React.Component {
 
     this.handleNav = nav => () => {
       const {movieid, ratingstyle} = this.parse();
-      const current = ratings.indexOf(ratingstyle);
+      const current = symbols.ratingStyles.indexOf(ratingstyle);
 
       if (current < 0) {
         return this.props.history.replace("/personality");
@@ -44,25 +42,25 @@ class LoginPage extends React.Component {
         if (typeof survey().selectedMovies[movieid][ratingstyle] !== 'number') {
           return alert("Please rate the movie");
         }
-        if (current < ratings.length - 1) {
-          return this.props.history.replace(`/rate/${movieid}/${ratings[current + 1]}`);
+        if (current < symbols.ratingStyles.length - 1) {
+          return this.props.history.replace(`/rate/${movieid}/${symbols.ratingStyles[current + 1]}`);
         }
 
         const nextMovieid = movieid + 1;
         if (survey().selectedMovies[nextMovieid]) {
-          return this.props.history.replace(`/rate/${nextMovieid}/${ratings[0]}`);
+          return this.props.history.replace(`/rate/${nextMovieid}/${symbols.ratingStyles[0]}`);
         }
-        return this.props.history.replace(`/review-ratings`);
+        return this.props.history.replace(`/review`);
       }
 
       // Back
       if (current > 0) {
-        return this.props.history.replace(`/rate/${movieid}/${ratings[current - 1]}`);
+        return this.props.history.replace(`/rate/${movieid}/${symbols.ratingStyles[current - 1]}`);
       }
 
       const prevMovieid = movieid - 1;
       if (survey().selectedMovies[prevMovieid]) {
-        return this.props.history.replace(`/rate/${prevMovieid}/${ratings[ratings.length - 1]}`);
+        return this.props.history.replace(`/rate/${prevMovieid}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
       }
       return this.props.history.replace(`/common`);
     }

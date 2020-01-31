@@ -9,7 +9,8 @@
     "test": "react-scripts test",
     "build-deploy": "rm -rf build && npm run build && gh-pages -d build",
     "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"

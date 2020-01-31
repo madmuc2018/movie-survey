@@ -7,8 +7,6 @@ import "../survey.css";
 import symbols from "../symbols.json";
 import Slider from "../Slider";
 
-const ratings = ["color-circle","color-star","color-emoji","slider","circle","emoji"];
-
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +56,7 @@ class LoginPage extends React.Component {
                 <th>Very Hard</th>
               </tr>
               {
-                ratings.map(r =>
+                symbols.ratingStyles.map(r =>
                   <tr>
                     <td>
                     {

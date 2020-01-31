@@ -6,7 +6,7 @@ import Rating from "react-rating";
 import "./style.css";
 import movies from "../../Data/movies.json";
 
-survey().selectedMovies = [0,1,2].map(i => movies[i])
+// survey().selectedMovies = [0,1,2].map(i => movies[i])
 
 class LoginPage extends React.Component {
   constructor(props) {
