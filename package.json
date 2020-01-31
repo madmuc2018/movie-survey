@@ -24,6 +24,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "dot-prop": "^5.2.0",
     "gh-pages": "^2.2.0",
     "nouislider-react": "^3.3.5",
     "react": "^16.12.0",

@@ -2,16 +2,17 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import utils from "../utils";
 import survey from "../../Data/survey";
+import dot from "dot-prop";
 
 class PersonalityPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      talkative: 0,
-      faultWithOthers: 0,
-      thoroughJob: 0,
-      depressed: 0
+      talkative: dot.get(survey.get(), 'personality.talkative', 0),
+      faultWithOthers: dot.get(survey.get(), 'personality.faultWithOthers', 0),
+      thoroughJob: dot.get(survey.get(), 'personality.thoroughJob', 0),
+      depressed: dot.get(survey.get(), 'personality.depressed', 0)
     };
 
     this.handleChange = event => {
@@ -23,6 +24,7 @@ class PersonalityPage extends React.Component {
 
     this.handleNext = () => {
       survey.get().personality = utils.clone(this.state);
+      console.log(survey.get());
       this.props.history.replace("/select");
     }
   }

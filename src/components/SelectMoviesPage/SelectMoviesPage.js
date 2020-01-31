@@ -43,7 +43,7 @@ class SelectMoviesPage extends React.Component {
     }
 
     this.handleBack = () => {
-      survey.reset();
+      survey.retain("personality");
       this.props.history.replace("/");
     }
   }

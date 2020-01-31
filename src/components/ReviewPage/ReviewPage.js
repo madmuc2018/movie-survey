@@ -6,19 +6,20 @@ import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
 import Slider from "../Slider";
+import dot from "dot-prop";
 
 class ReviewPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      "common": 0,
-      "color-circle": 0,
-      "color-star": 0,
-      "color-emoji": 0,
-      "slider": 0,
-      "circle": 0,
-      "emoji": 0
+      "common": dot.get(survey.get(), 'review.common', 0),
+      "color-circle": dot.get(survey.get(), 'review.color-circle', 0),
+      "color-star": dot.get(survey.get(), 'review.color-star', 0),
+      "color-emoji": dot.get(survey.get(), 'review.color-emoji', 0),
+      "slider": dot.get(survey.get(), 'review.slider', 0),
+      "circle": dot.get(survey.get(), 'review.circle', 0),
+      "emoji": dot.get(survey.get(), 'review.emoji', 0)
     };
 
     this.handleChange = event => {
