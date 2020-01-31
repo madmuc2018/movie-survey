@@ -12,6 +12,7 @@ class ReviewPage extends React.Component {
     super(props);
 
     this.state = {
+      "common": 0,
       "color-circle": 0,
       "color-star": 0,
       "color-emoji": 0,
@@ -43,8 +44,8 @@ class ReviewPage extends React.Component {
 
   render() {
     const radioRow = (option) => {
-      return [0,1,2,3,4].map(v =>
-        <td>
+      return [0,1,2,3,4].map((v, i) =>
+        <td key={i}>
           <input type="radio" name={option} value={v} checked={this.state[option] === v} onChange={this.handleChange} />
         </td>
       )
@@ -64,8 +65,8 @@ class ReviewPage extends React.Component {
                 <th>Very Hard</th>
               </tr>
               {
-                symbols.ratingStyles.map(r =>
-                  <tr>
+                symbols.ratingStyles.map((r, i) =>
+                  <tr key={i}>
                     <td>
                     {
                       r === "slider" ?
@@ -88,6 +89,18 @@ class ReviewPage extends React.Component {
                   </tr>
                 )
               }
+              <tr>
+                <td>
+                  <Rating
+                    style={{width: "100%"}}
+                    readonly
+                    stop={5}
+                    initialRating={5}
+                    fullSymbol={symbols.common.full}
+                  />
+                </td>
+                { radioRow("common") }
+              </tr>
             </tbody>
           </table>
           <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>

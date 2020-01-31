@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import survey from "../../Data/survey";
-import utils from "../utils";
 import Rating from "react-rating";
-import "./style.css";
+import "../survey.css";
+import symbols from "../symbols.json";
 
 class CommonRatePage extends React.Component {
   constructor(props) {
@@ -50,8 +50,8 @@ class CommonRatePage extends React.Component {
                       <Rating
                         initialRating={commonRate}
                         stop={5}
-                        emptySymbol={utils.numberList(5).map(i => 'fa fa-star-o fa-2x survey-yellow')}
-                        fullSymbol={utils.numberList(5).map(i => 'fa fa-star fa-2x survey-yellow')}
+                        emptySymbol={symbols.common.empty}
+                        fullSymbol={symbols.common.full}
                         onChange={this.handleChange(i)}
                       />
                   </ListGroup.Item>
