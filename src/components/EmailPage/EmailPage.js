@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
-import utils from "../utils";
-import survey from "../../Data/survey";
 import FormRow from "../FormRow";
 
 class LoginPage extends React.Component {

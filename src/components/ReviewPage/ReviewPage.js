@@ -28,8 +28,16 @@ class LoginPage extends React.Component {
     }
 
     this.handleNext = () => {
-      survey().review = utils.clone(this.state);
+      survey.get().review = utils.clone(this.state);
       this.props.history.replace("/choose");
+    }
+
+    this.handleBack = () => {
+      survey.get().review = utils.clone(this.state);
+      if (survey.get().selectedMovies.length > 0) {
+        return this.props.history.replace(`/rate/${survey.get().selectedMovies.length - 1}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
+      } 
+      this.props.history.replace('/select');
     }
   }
 
@@ -82,6 +90,7 @@ class LoginPage extends React.Component {
               }
             </tbody>
           </table>
+          <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Next</Button>
         </Container>
       </div>

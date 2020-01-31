@@ -22,12 +22,12 @@ class LoginPage extends React.Component {
 
     this.handleChange = r => {
       const {movieid, ratingstyle} = this.parse();
-      survey().selectedMovies[movieid][ratingstyle] = r;
+      survey.get().selectedMovies[movieid][ratingstyle] = r;
     }
 
     this.onSliderEnd = () => (render, handle, value, un, percent) => {
       const {movieid, ratingstyle} = this.parse();
-      survey().selectedMovies[movieid][ratingstyle] = value[0];
+      survey.get().selectedMovies[movieid][ratingstyle] = value[0];
     };
 
     this.handleNav = nav => () => {
@@ -39,7 +39,7 @@ class LoginPage extends React.Component {
       }
 
       if (nav === "next") {
-        if (typeof survey().selectedMovies[movieid][ratingstyle] !== 'number') {
+        if (typeof survey.get().selectedMovies[movieid][ratingstyle] !== 'number') {
           return alert("Please rate the movie");
         }
         if (current < symbols.ratingStyles.length - 1) {
@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
         }
 
         const nextMovieid = movieid + 1;
-        if (survey().selectedMovies[nextMovieid]) {
+        if (survey.get().selectedMovies[nextMovieid]) {
           return this.props.history.replace(`/rate/${nextMovieid}/${symbols.ratingStyles[0]}`);
         }
         return this.props.history.replace(`/review`);
@@ -59,7 +59,7 @@ class LoginPage extends React.Component {
       }
 
       const prevMovieid = movieid - 1;
-      if (survey().selectedMovies[prevMovieid]) {
+      if (survey.get().selectedMovies[prevMovieid]) {
         return this.props.history.replace(`/rate/${prevMovieid}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
       }
       return this.props.history.replace(`/common`);
@@ -67,10 +67,10 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    // console.log(survey().selectedMovies);
+    // console.log(survey.get().selectedMovies);
     const {movieid, ratingstyle} = this.parse();
-    const {name, img} = survey().selectedMovies[movieid];
-    const rated = survey().selectedMovies[movieid][ratingstyle];
+    const {name, img} = survey.get().selectedMovies[movieid];
+    const rated = survey.get().selectedMovies[movieid][ratingstyle];
     return (
       <div className="text-center">
         <Container>

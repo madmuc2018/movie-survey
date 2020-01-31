@@ -22,21 +22,21 @@ class LoginPage extends React.Component {
     }
 
     this.handleNext = () => {
-      survey().personality = utils.clone(this.state);
+      survey.get().personality = utils.clone(this.state);
       this.props.history.replace("/select");
     }
   }
 
   render() {
     const radioRow = (option) => {
-      return [0,1,2,3,4].map(v =>
-        <td>
+      return [0,1,2,3,4].map((v, i) =>
+        <td key={i}>
           <input type="radio" name={option} value={v} checked={this.state[option] === v} onChange={this.handleChange} />
         </td>
       )
     }
     return (
-      <div>
+      <div className="vertical-center">
         <Container>
           <p> Here are a number of characteristics that may or may not apply to you. For example, do you agree that you are someone who likes to spend time with others? Please select a box next to each statement to indicate the extent to which you agree or disagree with that statement. </p>
           <br/>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import utils from "../utils";
 import survey from "../../Data/survey";
 import Rating from "react-rating";
 import "../survey.css";
@@ -20,11 +19,15 @@ class LoginPage extends React.Component {
       this.setState({
         [name]: value
       });
+      survey.get().chosenRate = this.state.choice;
     }
 
     this.handleNext = () => {
-      survey().chosenRate = this.state.choice;
       this.props.history.replace("/email");
+    }
+
+    this.handleBack = () => {
+      this.props.history.replace("/review");
     }
   }
 
@@ -63,6 +66,7 @@ class LoginPage extends React.Component {
               </div>
             )
           }
+          <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Submit</Button>
         </Container>
       </div>

@@ -17,9 +17,9 @@ class LoginPage extends React.Component {
 
       if (!checked) {
         delete selected[name];
-      } else if (Object.keys(selected).length === 5) {
+      } else if (Object.keys(selected).length === 20) {
         event.target.checked = undefined;
-        return alert("You can only select 5 movies");
+        return alert("You can only select up to 20 movies");
       } else {
         selected[name] = true;
       }
@@ -30,10 +30,21 @@ class LoginPage extends React.Component {
     }
 
     this.handleNext = () => {
-      survey().selectedMovies = Object
+      if (Object.keys(this.state.selected).length === 0) {
+        return alert("Please select movies");
+      }
+      if (Object.keys(this.state.selected).length < 5) {
+        return alert("Please select more than 4 movies"); 
+      }
+      survey.get().selectedMovies = Object
         .keys(this.state.selected)
         .map(i => movies[parseInt(i)]);
       this.props.history.replace("/common");
+    }
+
+    this.handleBack = () => {
+      survey.reset();
+      this.props.history.replace("/personality");
     }
   }
 
@@ -57,6 +68,7 @@ class LoginPage extends React.Component {
               )
             }
           </CardColumns>
+          <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Next</Button>
         </Container>
       </div>
