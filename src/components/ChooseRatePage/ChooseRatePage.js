@@ -19,10 +19,10 @@ class ChooseRatePage extends React.Component {
       this.setState({
         [name]: value
       });
-      survey.get().chosenRate = this.state.choice;
     }
 
     this.handleNext = () => {
+      survey.get().chosenRate = this.state.choice;
       this.props.history.replace("/email");
     }
 

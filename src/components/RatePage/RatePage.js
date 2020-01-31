@@ -35,7 +35,7 @@ class RatePage extends React.Component {
       const current = symbols.ratingStyles.indexOf(ratingstyle);
 
       if (current < 0) {
-        return this.props.history.replace("/personality");
+        return this.props.history.replace("/");
       }
 
       if (nav === "next") {
@@ -67,7 +67,6 @@ class RatePage extends React.Component {
   }
 
   render() {
-    // console.log(survey.get().selectedMovies);
     const {movieid, ratingstyle} = this.parse();
     const {name, img} = survey.get().selectedMovies[movieid];
     const rated = survey.get().selectedMovies[movieid][ratingstyle];

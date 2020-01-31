@@ -34,7 +34,7 @@ class ReviewPage extends React.Component {
     }
 
     this.handleBack = () => {
-      survey.get().review = utils.clone(this.state);
+      // survey.get().review = utils.clone(this.state);
       if (survey.get().selectedMovies.length > 0) {
         return this.props.history.replace(`/rate/${survey.get().selectedMovies.length - 1}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
       } 

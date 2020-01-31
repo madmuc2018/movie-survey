@@ -38,7 +38,7 @@ export default class App extends React.Component {
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/personality" component={PersonalityPage} />
+          <Route exact path="/" component={PersonalityPage} />
           <Route exact path="/select" component={SelectMoviesPage} />
           <Route exact path="/common" component={CommonRatePage} />
           <Route exact path="/review" component={ReviewPage} />
