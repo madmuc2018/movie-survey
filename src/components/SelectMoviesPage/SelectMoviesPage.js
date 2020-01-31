@@ -3,7 +3,7 @@ import { Button, Container, Card, CardColumns } from "react-bootstrap";
 import movies from "../../Data/movies.json";
 import survey from "../../Data/survey";
 
-class LoginPage extends React.Component {
+class SelectMoviesPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -76,4 +76,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default SelectMoviesPage;

@@ -7,7 +7,7 @@ import "../survey.css";
 import symbols from "../symbols.json";
 import Slider from "../Slider";
 
-class LoginPage extends React.Component {
+class ReviewPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -98,4 +98,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default ReviewPage;

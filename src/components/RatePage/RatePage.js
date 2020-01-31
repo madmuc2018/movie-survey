@@ -6,7 +6,7 @@ import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
 
-class LoginPage extends React.Component {
+class RatePage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -108,4 +108,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default RatePage;

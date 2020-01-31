@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import FormRow from "../FormRow";
 
-class LoginPage extends React.Component {
+class EmailPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,4 +37,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default EmailPage;

@@ -5,7 +5,7 @@ import utils from "../utils";
 import Rating from "react-rating";
 import "./style.css";
 
-class LoginPage extends React.Component {
+class CommonRatePage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -67,4 +67,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default CommonRatePage;

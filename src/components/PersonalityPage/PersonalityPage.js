@@ -3,7 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import utils from "../utils";
 import survey from "../../Data/survey";
 
-class LoginPage extends React.Component {
+class PersonalityPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -76,4 +76,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default PersonalityPage;
