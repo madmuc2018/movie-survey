@@ -8,23 +8,119 @@ import ReviewPage from "./components/ReviewPage/ReviewPage";
 import ChooseRatePage from "./components/ChooseRatePage/ChooseRatePage";
 import EmailPage from "./components/EmailPage/EmailPage";
 import RatePage from "./components/RatePage/RatePage";
-import Auth from "./stores/auth";
+import ErrorPage from "./ErrorPage";
 
-function PrivateRoute({ component: Component, ...rest }) {
+import { string, object, number, array } from 'yup';
+import survey from "./Data/survey";
+
+const num = number().moreThan(-1).required().integer();
+const str = string().required();
+const obj = o => object().shape(o);
+
+const _personality = obj({
+  talkative: num,
+  faultWithOthers: num,
+  thoroughJob: num,
+  depressed: num
+});
+
+const _movie = obj({
+  "name": str,
+  "img": str
+});
+
+const _ratedMovie = obj({
+  "name": str,
+  "img": str,
+  "commonRate": num,
+  "color-circle": num,
+  "color-star": num,
+  "color-emoji": num,
+  "slider": num,
+  "circle": num,
+  "emoji": num
+});
+
+const _review = obj({
+  "common": num,
+  "color-circle": num,
+  "color-star": num,
+  "color-emoji": num,
+  "slider": num,
+  "circle": num,
+  "emoji": num
+});
+
+const selectSchema = obj({
+  personality: _personality
+});
+
+const commonSchema = obj({
+  personality: _personality,
+  selectedMovies: array().of(_movie)
+});
+
+const rateSchema = commonSchema;
+
+const reviewSchema = obj({
+  personality: _personality,
+  selectedMovies: array().of(_ratedMovie)
+});
+
+const chooseSchema = obj({
+  personality: _personality,
+  selectedMovies: array().of(_ratedMovie),
+  review: _review
+});
+
+const emailSchema = obj({
+  personality: _personality,
+  selectedMovies: array().of(_ratedMovie),
+  review: _review,
+  chosenRate: str
+});
+
+const schemas = {
+  "/select": selectSchema,
+  "/common": commonSchema,
+  "/review": reviewSchema,
+  "/choose": chooseSchema,
+  "/email": emailSchema,
+  "/rate/:movieid/:ratingstyle": rateSchema
+};
+
+function RestrictedRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={props =>
-        Auth.loggedIn() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
+      render = {
+        props => {
+          const schema = schemas[props.match.path];
+          if (!schema) {
+            return <Redirect
+              to={{
+                pathname: "/error",
+                state: { from: props.location }
+              }}
+            />
+          }
+
+          let transition;
+          try {
+            schema.validateSync(survey.get());
+            transition = <Component {...props} />
+          } catch(err) {
+            console.warn(err);
+            transition = <Redirect
+              to={{
+                pathname: "/",
+                state: { from: props.location }
+              }}
+            />
+          }
+
+          return transition;
+        }
       }
     />
   );
@@ -39,12 +135,13 @@ export default class App extends React.Component {
       <HashRouter>
         <Switch>
           <Route exact path="/" component={PersonalityPage} />
-          <Route exact path="/select" component={SelectMoviesPage} />
-          <Route exact path="/common" component={CommonRatePage} />
-          <Route exact path="/review" component={ReviewPage} />
-          <Route exact path="/choose" component={ChooseRatePage} />
-          <Route exact path="/email" component={EmailPage} />
-          <Route exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
+          <Route exact path="/error" component={ErrorPage} />
+          <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
+          <RestrictedRoute exact path="/common" component={CommonRatePage} />
+          <RestrictedRoute exact path="/review" component={ReviewPage} />
+          <RestrictedRoute exact path="/choose" component={ChooseRatePage} />
+          <RestrictedRoute exact path="/email" component={EmailPage} />
+          <RestrictedRoute exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
         </Switch>
       </HashRouter>
     );

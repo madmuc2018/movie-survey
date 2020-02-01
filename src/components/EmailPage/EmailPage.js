@@ -24,7 +24,7 @@ class EmailPage extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(survey.get()));
+    // console.log(JSON.stringify(survey.get()));
     return (
       <div>
         <Container>
