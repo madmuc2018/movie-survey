@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
+import { Beforeunload } from 'react-beforeunload';
 
 import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
 import SelectMoviesPage from "./components/SelectMoviesPage/SelectMoviesPage";
@@ -132,18 +133,20 @@ function RestrictedRoute({ component: Component, ...rest }) {
 export default class App extends React.Component {
   render() {
     return (
-      <HashRouter>
-        <Switch>
-          <Route exact path="/" component={PersonalityPage} />
-          <Route exact path="/error" component={ErrorPage} />
-          <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
-          <RestrictedRoute exact path="/common" component={CommonRatePage} />
-          <RestrictedRoute exact path="/review" component={ReviewPage} />
-          <RestrictedRoute exact path="/choose" component={ChooseRatePage} />
-          <RestrictedRoute exact path="/email" component={EmailPage} />
-          <RestrictedRoute exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
-        </Switch>
-      </HashRouter>
+      <Beforeunload onBeforeunload={() => "Survey data can be loss, are you sure?"}>
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" component={PersonalityPage} />
+            <Route exact path="/error" component={ErrorPage} />
+            <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
+            <RestrictedRoute exact path="/common" component={CommonRatePage} />
+            <RestrictedRoute exact path="/review" component={ReviewPage} />
+            <RestrictedRoute exact path="/choose" component={ChooseRatePage} />
+            <RestrictedRoute exact path="/email" component={EmailPage} />
+            <RestrictedRoute exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
+          </Switch>
+        </HashRouter>
+      </Beforeunload>
     );
   }
 }
