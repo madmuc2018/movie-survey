@@ -5,6 +5,8 @@ import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
 import Slider from "../Slider";
+import api from "../../Data/api";
+import AsyncAwareContainer from "../AsyncAwareContainer";
 
 class ChooseRatePage extends React.Component {
   constructor(props) {
@@ -21,9 +23,18 @@ class ChooseRatePage extends React.Component {
       });
     }
 
-    this.handleNext = () => {
-      survey.get().chosenRate = this.state.choice;
-      this.props.history.replace("/email");
+    this.handleNext = async () => {
+      try {
+        this.setState({loading: 'Submitting ...'});
+        survey.get().chosenRate = this.state.choice;
+        await api.submit(survey.get());
+        this.props.history.replace("/email");
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        if (!this.componentUnmounted)
+          this.setState({loading: undefined});
+      }
     }
 
     this.handleBack = () => {
@@ -31,9 +42,13 @@ class ChooseRatePage extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.componentUnmounted = true;
+  }
+
   render() {
     return (
-      <div>
+      <AsyncAwareContainer loading={this.state.loading}>
         <Container>
           <h6>Your ratings will be considered very helpful into the final ratings provided by the studio, would you like to re-rate it again ? If so, which one of the rating scales would you use?</h6>
           {
@@ -69,7 +84,7 @@ class ChooseRatePage extends React.Component {
           <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Submit</Button>
         </Container>
-      </div>
+      </AsyncAwareContainer>
     );
   }
 }

@@ -10,7 +10,8 @@
     "build-deploy": "rm -rf build && npm run build && gh-pages -d build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix src/**/*.js"
+    "lint": "eslint --fix src/**/*.js server.js",
+    "server": "nodemon -L server.js --ignore './src'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,6 +28,7 @@
     "cors": "^2.8.5",
     "dot-prop": "^5.2.0",
     "express": "^4.17.1",
+    "googleapis": "^47.0.0",
     "nouislider-react": "^3.3.5",
     "react": "^16.12.0",
     "react-beforeunload": "^2.1.0",
@@ -36,7 +38,10 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
+    "uniqid": "^5.2.0",
     "yup": "^0.28.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jsonfile": "^5.0.0"
+  }
 }
