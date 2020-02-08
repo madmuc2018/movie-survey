@@ -5,7 +5,6 @@ import survey from "../../Data/survey";
 import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
-import Slider from "../Slider";
 import dot from "dot-prop";
 
 class ReviewPage extends React.Component {
@@ -17,7 +16,6 @@ class ReviewPage extends React.Component {
       "color-circle": dot.get(survey.get(), 'review.color-circle', 0),
       "color-star": dot.get(survey.get(), 'review.color-star', 0),
       "color-emoji": dot.get(survey.get(), 'review.color-emoji', 0),
-      "slider": dot.get(survey.get(), 'review.slider', 0),
       "circle": dot.get(survey.get(), 'review.circle', 0),
       "emoji": dot.get(survey.get(), 'review.emoji', 0)
     };
@@ -70,20 +68,13 @@ class ReviewPage extends React.Component {
                   <tr key={i}>
                     <td>
                     {
-                      r === "slider" ?
-                        <Slider
-                          disabled={true}
-                          start={5}
-                          onEnd={() => {}}
-                        />
-                      :
-                        <Rating
-                          style={{width: "100%"}}
-                          readonly
-                          stop={5}
-                          initialRating={5}
-                          fullSymbol={symbols[r].full}
-                        />
+                      <Rating
+                        style={{width: "100%"}}
+                        readonly
+                        stop={5}
+                        initialRating={5}
+                        fullSymbol={symbols[r].full}
+                      />
                     }
                     </td>
                     { radioRow(r) }

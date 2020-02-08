@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import survey from "../../Data/survey";
-import Slider from "../Slider";
 import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
@@ -24,11 +23,6 @@ class RatePage extends React.Component {
       const {movieid, ratingstyle} = this.parse();
       survey.get().selectedMovies[movieid][ratingstyle] = r;
     }
-
-    this.onSliderEnd = () => (render, handle, value, un, percent) => {
-      const {movieid, ratingstyle} = this.parse();
-      survey.get().selectedMovies[movieid][ratingstyle] = value[0];
-    };
 
     this.handleNav = nav => () => {
       const {movieid, ratingstyle} = this.parse();
@@ -77,24 +71,13 @@ class RatePage extends React.Component {
           <img src={img} alt="Poster" height="400" width="240" />
           <h6>{name}</h6>
           {
-            ratingstyle === "slider" ?
-              <div style={{
-                marginLeft: '35%',
-                marginRight: '35%'
-              }}>
-                <Slider
-                  start={typeof rated === 'number' ? rated : 3}
-                  onEnd={this.onSliderEnd}
-                />
-              </div>
-            :
-              <Rating
-                stop={5}
-                emptySymbol={symbols[ratingstyle].empty}
-                fullSymbol={symbols[ratingstyle].full}
-                onChange={this.handleChange}
-                initialRating={rated}
-              />
+            <Rating
+              stop={5}
+              emptySymbol={symbols[ratingstyle].empty}
+              fullSymbol={symbols[ratingstyle].full}
+              onChange={this.handleChange}
+              initialRating={rated}
+            />
           }
           <br/>
           <span>

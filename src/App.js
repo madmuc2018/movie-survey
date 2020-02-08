@@ -37,7 +37,6 @@ const _ratedMovie = obj({
   "color-circle": num,
   "color-star": num,
   "color-emoji": num,
-  "slider": num,
   "circle": num,
   "emoji": num
 });
@@ -47,7 +46,6 @@ const _review = obj({
   "color-circle": num,
   "color-star": num,
   "color-emoji": num,
-  "slider": num,
   "circle": num,
   "emoji": num
 });

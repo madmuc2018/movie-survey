@@ -4,7 +4,6 @@ import survey from "../../Data/survey";
 import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
-import Slider from "../Slider";
 import api from "../../Data/api";
 import AsyncAwareContainer from "../AsyncAwareContainer";
 
@@ -60,20 +59,13 @@ class ChooseRatePage extends React.Component {
                   </Col>
                   <Col xs lg="2">
                     {
-                      r === "slider" ?
-                        <Slider
-                          disabled={true}
-                          start={3}
-                          onEnd={() => {}}
-                        />
-                      :
-                        <Rating
-                          style={{width: "100%"}}
-                          readonly
-                          stop={5}
-                          initialRating={5}
-                          fullSymbol={symbols[r].full}
-                        />
+                      <Rating
+                        style={{width: "100%"}}
+                        readonly
+                        stop={5}
+                        initialRating={5}
+                        fullSymbol={symbols[r].full}
+                      />
                     }
                   </Col>
                 </Row>
