@@ -13,6 +13,8 @@ class ReviewPage extends React.Component {
 
     this.getMovie = () => survey.get().selectedMovies[parseInt(this.props.match.params.movieid)]
 
+    this.getSelected = () => Object.keys(this.state.selected).map(i => parseInt(i))
+
     this.handleChange = event => {
       const { name, checked } = event.target;
       const selected = this.state.selected;
@@ -34,14 +36,15 @@ class ReviewPage extends React.Component {
       }
 
       const movie = this.getMovie();
-      const selectedScores = Object.keys(this.state.selected).map(i => parseInt(i));
+      const selectedScores = this.getSelected();
       const chosenScores = [];
       ["commonRate"].concat(symbols.ratingStyles)
         .forEach((r, i) => selectedScores.indexOf(movie[r]) > -1 && chosenScores.push(i));
       this.getMovie().chosenRatings = chosenScores;
 
       if (survey.get().reviewSequence.length > 0) {
-        return this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
+        this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
+        return this.setState({selected: {}});
       }
       this.props.history.replace(`/email`);
     }
@@ -60,7 +63,7 @@ class ReviewPage extends React.Component {
               <div key={i}>
                 <Row className="justify-content-md-center">
                   <Col xs lg="1">
-                    <input type="checkbox" name={movie[r]} onChange={this.handleChange} />
+                    <input type="checkbox" name={movie[r]} checked={this.getSelected().indexOf(movie[r]) > -1} onChange={this.handleChange} />
                   </Col>
                   <Col xs lg="1">
                     <h5>{movie[r]}</h5>
