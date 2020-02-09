@@ -14,6 +14,9 @@ export default {
   	if (survey) {
       Object.keys(survey).forEach(k => k !== key && delete survey[k]);
     }
+  },
+  log: () => {
+    console.log(JSON.stringify(survey));
   }
 }
 
@@ -109,7 +112,12 @@ const test2 = {
     ],
     "navSequence":[
 
+    ],
+    "reviewOverall":"color-star",
+    "reviewSequence":[
+        0,
+        1
     ]
-};
+}
 
 survey = test2;

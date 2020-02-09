@@ -1,101 +1,75 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
-import utils from "../utils";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import survey from "../../Data/survey";
-import Rating from "react-rating";
-import "../survey.css";
 import symbols from "../symbols.json";
-import dot from "dot-prop";
 
 class ReviewPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      "common": dot.get(survey.get(), 'review.common', 0),
-      "color-circle": dot.get(survey.get(), 'review.color-circle', 0),
-      "color-star": dot.get(survey.get(), 'review.color-star', 0),
-      "color-emoji": dot.get(survey.get(), 'review.color-emoji', 0),
-      "circle": dot.get(survey.get(), 'review.circle', 0),
-      "emoji": dot.get(survey.get(), 'review.emoji', 0)
+      selected: {}
     };
 
+    this.getMovie = () => survey.get().selectedMovies[parseInt(this.props.match.params.movieid)]
+
     this.handleChange = event => {
-      const { name, value } = event.target;
+      const { name, checked } = event.target;
+      const selected = this.state.selected;
+
+      if (!checked) {
+        delete selected[name];
+      } else {
+        selected[name] = true;
+      }
+
       this.setState({
-        [name]: parseInt(value)
+        selected
       });
     }
 
     this.handleNext = () => {
-      survey.get().review = utils.clone(this.state);
-      this.props.history.replace("/choose");
-    }
+      if (Object.keys(this.state.selected).length === 0) {
+        return alert("Please select");
+      }
 
-    this.handleBack = () => {
-      // survey.get().review = utils.clone(this.state);
-      if (survey.get().selectedMovies.length > 0) {
-        return this.props.history.replace(`/rate/${survey.get().selectedMovies.length - 1}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
-      } 
-      this.props.history.replace('/select');
+      const movie = this.getMovie();
+      const selectedScores = Object.keys(this.state.selected).map(i => parseInt(i));
+      const chosenScores = [];
+      ["commonRate"].concat(symbols.ratingStyles)
+        .forEach((r, i) => selectedScores.indexOf(movie[r]) > -1 && chosenScores.push(i));
+      this.getMovie().chosenRatings = chosenScores;
+
+      if (survey.get().reviewSequence.length > 0) {
+        return this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
+      }
+      this.props.history.replace(`/email`);
     }
   }
 
   render() {
-    const radioRow = (option) => {
-      return [0,1,2,3,4].map((v, i) =>
-        <td key={i}>
-          <input type="radio" name={option} value={v} checked={this.state[option] === v} onChange={this.handleChange} />
-        </td>
-      )
-    }
+    const movie = this.getMovie();
     return (
-      <div>
+      <div className="text-center">
         <Container>
-          <h6>How would you rate your effort in rating the movies using the following scale?</h6>
-          <table border="0" cellPadding="30">
-            <tbody>
-              <tr>
-                <th></th>
-                <th>Very Easy</th>
-                <th>Easy</th>
-                <th>Medium</th>
-                <th>Hard</th>
-                <th>Very Hard</th>
-              </tr>
-              {
-                symbols.ratingStyles.map((r, i) =>
-                  <tr key={i}>
-                    <td>
-                    {
-                      <Rating
-                        style={{width: "100%"}}
-                        readonly
-                        stop={5}
-                        initialRating={5}
-                        fullSymbol={symbols[r].full}
-                      />
-                    }
-                    </td>
-                    { radioRow(r) }
-                  </tr>
-                )
-              }
-              <tr>
-                <td>
-                  <Rating
-                    style={{width: "100%"}}
-                    readonly
-                    stop={5}
-                    initialRating={5}
-                    fullSymbol={symbols.common.full}
-                  />
-                </td>
-                { radioRow("common") }
-              </tr>
-            </tbody>
-          </table>
-          <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
+          <h6>For the movies that you rated so far using 6 different scales, all the 6 numeric values of your ratings will appear for each movie. please select all the boxes which have the value you think is best suited for the movie:</h6>
+          <img src={movie.img} alt="Poster" height="400" width="240" />
+          <h6>{movie.name}</h6>
+          {
+            ["commonRate"].concat(symbols.ratingStyles).map((r, i) =>
+              <div key={i}>
+                <Row className="justify-content-md-center">
+                  <Col xs lg="1">
+                    <input type="checkbox" name={movie[r]} onChange={this.handleChange} />
+                  </Col>
+                  <Col xs lg="1">
+                    <h5>{movie[r]}</h5>
+                  </Col>
+                </Row>
+                <br/>
+              </div>
+            )
+          }
           <Button style={{"float":"right"}} onClick={this.handleNext}>Next</Button>
         </Container>
       </div>

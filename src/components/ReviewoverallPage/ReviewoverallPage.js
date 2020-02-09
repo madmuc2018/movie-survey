@@ -4,10 +4,10 @@ import survey from "../../Data/survey";
 import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
-import api from "../../Data/api";
+import utils from "../utils";
 import AsyncAwareContainer from "../AsyncAwareContainer";
 
-class ChooseRatePage extends React.Component {
+class ReviewoverallPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,9 +25,9 @@ class ChooseRatePage extends React.Component {
     this.handleNext = async () => {
       try {
         this.setState({loading: 'Submitting ...'});
-        survey.get().chosenRate = this.state.choice;
-        await api.submit(survey.get());
-        this.props.history.replace("/email");
+        survey.get().reviewOverall = this.state.choice;
+        survey.get().reviewSequence = utils.numberList(survey.get().selectedMovies.length);
+        this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
       } catch (error) {
         alert(error.message);
       } finally {
@@ -81,4 +81,4 @@ class ChooseRatePage extends React.Component {
   }
 }
 
-export default ChooseRatePage;
+export default ReviewoverallPage;

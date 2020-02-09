@@ -6,7 +6,7 @@ import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
 import SelectMoviesPage from "./components/SelectMoviesPage/SelectMoviesPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
-import ChooseRatePage from "./components/ChooseRatePage/ChooseRatePage";
+import ReviewoverallPage from "./components/ReviewoverallPage/ReviewoverallPage";
 import EmailPage from "./components/EmailPage/EmailPage";
 import RatePage from "./components/RatePage/RatePage";
 import ErrorPage from "./ErrorPage";
@@ -35,6 +35,8 @@ const _navSeq = array().of(obj({
   "ratingstyle": str
 })).min(0);
 
+const _reviewSeq = array().of(num).min(0);
+
 const _ratedMovie = array().of(obj({
   "name": str,
   "img": str,
@@ -46,14 +48,19 @@ const _ratedMovie = array().of(obj({
   "emoji": num
 })).min(0);
 
-const _review = obj({
-  "common": num,
+const _reviewedMovie = array().of(obj({
+  "name": str,
+  "img": str,
+  "commonRate": num,
   "color-circle": num,
   "color-star": num,
   "color-emoji": num,
   "circle": num,
-  "emoji": num
-});
+  "emoji": num,
+  "chosenRatings": array().of(num)
+})).min(0);
+
+const _reviewOverall = str;
 
 const selectSchema = obj({
   personality: _personality
@@ -67,31 +74,31 @@ const commonSchema = obj({
 
 const rateSchema = commonSchema;
 
-const reviewSchema = obj({
+const reviewoverallSchema = obj({
   personality: _personality,
-  selectedMovies: _ratedMovie,
+  selectedMovies: _ratedMovie
 });
 
-const chooseSchema = obj({
+const reviewEachSchema = obj({
   personality: _personality,
   selectedMovies: _ratedMovie,
-  review: _review
+  reviewOverall: _reviewOverall,
+  reviewSequence : _reviewSeq
 });
 
 const emailSchema = obj({
   personality: _personality,
-  selectedMovies: _ratedMovie,
-  review: _review,
-  chosenRate: str
+  selectedMovies: _reviewedMovie,
+  reviewOverall: _reviewOverall
 });
 
 const schemas = {
   "/select": selectSchema,
   "/common": commonSchema,
-  "/review": reviewSchema,
-  "/choose": chooseSchema,
-  "/email": emailSchema,
-  "/rate/:movieid/:ratingstyle": rateSchema
+  "/rate/:movieid/:ratingstyle": rateSchema,
+  "/reviewoverall": reviewoverallSchema,
+  "/review/:movieid": reviewEachSchema,
+  "/email": emailSchema
 };
 
 function RestrictedRoute({ component: Component, ...rest }) {
@@ -144,10 +151,10 @@ export default class App extends React.Component {
             <Route exact path="/error" component={ErrorPage} />
             <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
             <RestrictedRoute exact path="/common" component={CommonRatePage} />
-            <RestrictedRoute exact path="/review" component={ReviewPage} />
-            <RestrictedRoute exact path="/choose" component={ChooseRatePage} />
+            <RestrictedRoute exact path="/reviewoverall" component={ReviewoverallPage} />
             <RestrictedRoute exact path="/email" component={EmailPage} />
             <RestrictedRoute exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
+            <RestrictedRoute exact path="/review/:movieid" component={ReviewPage} />
           </Switch>
         </HashRouter>
       </Beforeunload>

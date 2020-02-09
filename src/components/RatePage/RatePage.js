@@ -34,7 +34,7 @@ class RatePage extends React.Component {
         const { movieid, ratingstyle } = survey.get().navSequence.pop();
         return this.props.history.replace(`/rate/${movieid}/${ratingstyle}`);
       }
-      return this.props.history.replace(`/review`);
+      return this.props.history.replace(`/reviewoverall`);
     }
   }
 
