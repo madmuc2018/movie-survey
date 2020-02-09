@@ -14,56 +14,34 @@ class RatePage extends React.Component {
     // const ratingstyle = this.props.match.params.ratingstyle;
 
     this.parse = () => {
-      const movieid = parseInt(this.props.match.params.movieid);
-      const ratingstyle = this.props.match.params.ratingstyle;
-      return {movieid, ratingstyle};
+      const m = parseInt(this.props.match.params.movieid);
+      const r = this.props.match.params.ratingstyle;
+       return { m, r };
     }
 
-    this.handleChange = r => {
-      const {movieid, ratingstyle} = this.parse();
-      survey.get().selectedMovies[movieid][ratingstyle] = r;
+    this.handleChange = rating => {
+      const { m, r } = this.parse();
+      survey.get().selectedMovies[m][r] = rating;
     }
 
-    this.handleNav = nav => () => {
-      const {movieid, ratingstyle} = this.parse();
-      const current = symbols.ratingStyles.indexOf(ratingstyle);
-
-      if (current < 0) {
-        return this.props.history.replace("/");
+    this.handleNav = () => {
+      const { m, r } = this.parse();
+      if (typeof survey.get().selectedMovies[m][r] !== 'number') {
+        return alert("Please rate the movie");
       }
 
-      if (nav === "next") {
-        if (typeof survey.get().selectedMovies[movieid][ratingstyle] !== 'number') {
-          return alert("Please rate the movie");
-        }
-        if (current < symbols.ratingStyles.length - 1) {
-          return this.props.history.replace(`/rate/${movieid}/${symbols.ratingStyles[current + 1]}`);
-        }
-
-        const nextMovieid = movieid + 1;
-        if (survey.get().selectedMovies[nextMovieid]) {
-          return this.props.history.replace(`/rate/${nextMovieid}/${symbols.ratingStyles[0]}`);
-        }
-        return this.props.history.replace(`/review`);
+      if (survey.get().navSequence.length > 0) {
+        const { movieid, ratingstyle } = survey.get().navSequence.pop();
+        return this.props.history.replace(`/rate/${movieid}/${ratingstyle}`);
       }
-
-      // Back
-      if (current > 0) {
-        return this.props.history.replace(`/rate/${movieid}/${symbols.ratingStyles[current - 1]}`);
-      }
-
-      const prevMovieid = movieid - 1;
-      if (survey.get().selectedMovies[prevMovieid]) {
-        return this.props.history.replace(`/rate/${prevMovieid}/${symbols.ratingStyles[symbols.ratingStyles.length - 1]}`);
-      }
-      return this.props.history.replace(`/common`);
+      return this.props.history.replace(`/review`);
     }
   }
 
   render() {
-    const {movieid, ratingstyle} = this.parse();
-    const {name, img} = survey.get().selectedMovies[movieid];
-    const rated = survey.get().selectedMovies[movieid][ratingstyle];
+    const {m, r} = this.parse();
+    const {name, img} = survey.get().selectedMovies[m];
+    const rated = survey.get().selectedMovies[m][r];
     return (
       <div className="text-center">
         <Container>
@@ -73,16 +51,15 @@ class RatePage extends React.Component {
           {
             <Rating
               stop={5}
-              emptySymbol={symbols[ratingstyle].empty}
-              fullSymbol={symbols[ratingstyle].full}
+              emptySymbol={symbols[r].empty}
+              fullSymbol={symbols[r].full}
               onChange={this.handleChange}
               initialRating={rated}
             />
           }
           <br/>
           <span>
-            <Button style={{"float":"left"}} onClick={this.handleNav("back")}>Previous</Button>
-            <Button style={{"float":"right"}} onClick={this.handleNav("next")}>Next</Button>
+            <Button style={{"float":"right"}} onClick={this.handleNav}>Next</Button>
           </span>
         </Container>
       </div>

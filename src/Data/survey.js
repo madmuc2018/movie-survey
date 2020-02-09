@@ -17,7 +17,7 @@ export default {
   }
 }
 
-const test = {
+const test1 = {
     "personality":{
         "talkative":0,
         "faultWithOthers":1,
@@ -26,25 +26,90 @@ const test = {
     },
     "selectedMovies":[
         {
-            "name":"Avengers: Endgame (2019)",
-            "img":"https://images.hdqwalls.com/download/2019-avengers-endgame-cm-240x400.jpg",
-            "commonRate":3,
-            "color-circle":5,
-            "color-star":5,
-            "color-emoji":5,
-            "circle":5,
-            "emoji":5
+            "name":"Van Helsing",
+            "img":"https://prodigits.co.uk/thumbs/wallpapers/p2/fcelebs/15/9ab51d9c12256001.jpg"
+        },
+        {
+            "name":"Finding Nemo(2003)",
+            "img":"https://i.pinimg.com/originals/71/b2/37/71b2379b1010282d283c21f1079016fb.jpg"
         }
     ],
-    "review":{
-        "common":0,
-        "color-circle":0,
-        "color-star":0,
-        "color-emoji":0,
-        "circle":0,
-        "emoji":0
-    },
-    "chosenRate":"color-star"
+    "navSequence":[
+        {
+            "movieid":0,
+            "ratingstyle":"color-emoji"
+        },
+        {
+            "movieid":1,
+            "ratingstyle":"circle"
+        },
+        {
+            "movieid":0,
+            "ratingstyle":"circle"
+        },
+        {
+            "movieid":0,
+            "ratingstyle":"color-circle"
+        },
+        {
+            "movieid":0,
+            "ratingstyle":"color-star"
+        },
+        {
+            "movieid":1,
+            "ratingstyle":"emoji"
+        },
+        {
+            "movieid":0,
+            "ratingstyle":"emoji"
+        },
+        {
+            "movieid":1,
+            "ratingstyle":"color-star"
+        },
+        {
+            "movieid":1,
+            "ratingstyle":"color-emoji"
+        },
+        {
+            "movieid":1,
+            "ratingstyle":"color-circle"
+        }
+    ]
 };
 
-survey = test;
+const test2 = {
+    "personality":{
+        "talkative":0,
+        "faultWithOthers":1,
+        "thoroughJob":2,
+        "depressed":3
+    },
+    "selectedMovies":[
+        {
+            "name":"Van Helsing",
+            "img":"https://prodigits.co.uk/thumbs/wallpapers/p2/fcelebs/15/9ab51d9c12256001.jpg",
+            "commonRate":3,
+            "emoji":5,
+            "color-star":2,
+            "color-circle":4,
+            "circle":5,
+            "color-emoji":3
+        },
+        {
+            "name":"Finding Nemo(2003)",
+            "img":"https://i.pinimg.com/originals/71/b2/37/71b2379b1010282d283c21f1079016fb.jpg",
+            "commonRate":4,
+            "color-circle":2,
+            "color-emoji":4,
+            "color-star":3,
+            "emoji":3,
+            "circle":3
+        }
+    ],
+    "navSequence":[
+
+    ]
+};
+
+survey = test2;

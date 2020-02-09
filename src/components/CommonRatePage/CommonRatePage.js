@@ -17,7 +17,8 @@ class CommonRatePage extends React.Component {
       if (survey.get().selectedMovies.filter(m => typeof m.commonRate !== 'number').length > 0) {
         return alert("Please rate all the movies");
       }
-      this.props.history.replace(`/rate/0/color-circle`);
+      const { movieid, ratingstyle } = survey.get().navSequence.pop();
+      this.props.history.replace(`/rate/${movieid}/${ratingstyle}`);
     }
 
     this.handleBack = () => {

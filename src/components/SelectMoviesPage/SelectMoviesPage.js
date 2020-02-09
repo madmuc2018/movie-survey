@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Container, Card, CardColumns } from "react-bootstrap";
 import movies from "../../Data/movies.json";
 import survey from "../../Data/survey";
+import symbols from "../symbols.json";
+import utils from "../utils";
+import shuffle from "shuffle-array";
 
 class SelectMoviesPage extends React.Component {
   constructor(props) {
@@ -36,9 +39,24 @@ class SelectMoviesPage extends React.Component {
       if (Object.keys(this.state.selected).length < 5) {
         return alert("Please select more than 4 movies"); 
       }
-      survey.get().selectedMovies = Object
-        .keys(this.state.selected)
-        .map(i => movies[parseInt(i)]);
+      const selectedMovies = Object.keys(this.state.selected).map(i => movies[parseInt(i)]);
+      survey.get().selectedMovies = selectedMovies;
+
+      const movieids = utils.numberList(selectedMovies.length);
+      const ratingstyles = symbols.ratingStyles;
+
+      survey.get().navSequence = [];
+      movieids.forEach(movieid =>
+        ratingstyles.forEach(ratingstyle =>
+          survey.get().navSequence.push({
+            movieid,
+            ratingstyle
+          })
+        )
+      );
+      shuffle(survey.get().navSequence);
+      // console.log(JSON.stringify(survey.get()));
+
       this.props.history.replace("/common");
     }
 

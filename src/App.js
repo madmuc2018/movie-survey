@@ -25,12 +25,17 @@ const _personality = obj({
   depressed: num
 });
 
-const _movie = obj({
+const _movie = array().of(obj({
   "name": str,
   "img": str
-});
+})).min(0);
 
-const _ratedMovie = obj({
+const _navSeq = array().of(obj({
+  "movieid": num,
+  "ratingstyle": str
+})).min(0);
+
+const _ratedMovie = array().of(obj({
   "name": str,
   "img": str,
   "commonRate": num,
@@ -39,7 +44,7 @@ const _ratedMovie = obj({
   "color-emoji": num,
   "circle": num,
   "emoji": num
-});
+})).min(0);
 
 const _review = obj({
   "common": num,
@@ -56,25 +61,26 @@ const selectSchema = obj({
 
 const commonSchema = obj({
   personality: _personality,
-  selectedMovies: array().of(_movie)
+  selectedMovies: _movie,
+  navSequence: _navSeq
 });
 
 const rateSchema = commonSchema;
 
 const reviewSchema = obj({
   personality: _personality,
-  selectedMovies: array().of(_ratedMovie)
+  selectedMovies: _ratedMovie,
 });
 
 const chooseSchema = obj({
   personality: _personality,
-  selectedMovies: array().of(_ratedMovie),
+  selectedMovies: _ratedMovie,
   review: _review
 });
 
 const emailSchema = obj({
   personality: _personality,
-  selectedMovies: array().of(_ratedMovie),
+  selectedMovies: _ratedMovie,
   review: _review,
   chosenRate: str
 });
@@ -109,7 +115,7 @@ function RestrictedRoute({ component: Component, ...rest }) {
             schema.validateSync(survey.get());
             transition = <Component {...props} />
           } catch(err) {
-            console.warn(err);
+            alert(err);
             transition = <Redirect
               to={{
                 pathname: "/",
