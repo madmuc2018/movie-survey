@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const uniqid = require('uniqid');
+const symbols = require('./src/components/symbols.json');
 
 const app = express();
 app.use(cors());
@@ -14,28 +15,8 @@ app.get('/', function (req, res) {
 
 app.post('/submit', async (req, res, next) => {
   try {
-    const { personality, selectedMovies, review } = req.body;
-    const userId = uniqid();
-
-    const ratingStyles = ["commonRate", "color-circle", "color-star", "color-emoji", "slider", "circle", "emoji"];
-    await insertRows(
-      ((await createSpreadsheet(userId)).spreadsheetId),
-      [
-        [''].concat(ratingStyles),
-        ...selectedMovies.map(m => [m.name].concat(ratingStyles.map(r => m[r])))
-      ]
-    );
-
-    await insertRows(
-      (await getOverallTableId()),
-      [
-        [ 
-          userId,
-          ...['talkative','faultWithOthers','thoroughJob','depressed'].map(i => personality[i]),
-          ...['common', 'color-circle', 'color-star', 'color-emoji', 'slider', 'circle', 'emoji'].map(i => review[i])
-        ]
-      ]
-    );
+    // jsonfile.writeFileSync('/mnt/vagrant/testdata.json', req.body);
+    await processSurvey(req.body);
     res.end();
   } catch (e) {
     console.log(e);
@@ -52,8 +33,19 @@ app.listen(8080, () => console.log('Listening on 8080'));
 //
 //####################################
 // const {google} = require('googleapis');
-const keys = require('./keys.json');
 const SHARED_FOLDER = process.env.SHARED_FOLDER;
+const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+if (!SHARED_FOLDER) {
+  throw new Error("Missing env var SHARED_FOLDER");
+}
+if (!CLIENT_EMAIL) {
+  throw new Error("Missing env var CLIENT_EMAIL");
+}
+if (!PRIVATE_KEY) {
+  throw new Error("Missing env var PRIVATE_KEY");
+}
 
 let lazyGG;
 // singleton-style lazy loading
@@ -66,10 +58,9 @@ let lazyGG;
       }
       if (!auth) {
         auth = new google.auth.JWT(
-          keys.client_email,
+          CLIENT_EMAIL,
           null,
-          keys.private_key,
-          // process.env.PRIV,
+          PRIVATE_KEY,
           [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
@@ -135,7 +126,7 @@ async function listFiles() {
     orderBy: 'createdTime desc'
   });
   // console.log(res.data.files.filter(i => i.name === 'Overall')[0].owners);
-  // console.log(res.data.files);
+  console.log(res.data.files);
   return res.data.files;
 }
 
@@ -147,7 +138,7 @@ async function getOverallTableId() {
   const overallSheet = await createSpreadsheet('Overall');
   await insertRows(overallSheet.spreadsheetId,
     [
-      ['userId', 'talkative','faultWithOthers','thoroughJob','depressed','common', 'color-circle', 'color-star', 'color-emoji', 'slider', 'circle', 'emoji'],
+      ['userId', 'talkative','faultWithOthers','thoroughJob','depressed']
     ]
   );
   // await boldFirstRowAndColumn(overallSheet.spreadsheetId);
@@ -196,15 +187,47 @@ async function getOverallTableId() {
 //   return res.data;
 // }
 
-// async function deleteAllFiles() {
-//   try {
-//     const { drive } = await lazyGG.get();
-//     const reqs = []
-//     for(const fileId of (await listFiles()).map(i => i.id)) {
-//       reqs.push(drive.files.delete({fileId}));
-//     }
-//     await Promise.all(reqs);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+async function deleteAllFiles() {
+  try {
+    const { drive } = await lazyGG.get();
+    const reqs = []
+    for(const fileId of (await listFiles()).map(i => i.id)) {
+      reqs.push(drive.files.delete({fileId}));
+    }
+    await Promise.all(reqs);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function processSurvey(survey) {
+  const { personality, selectedMovies, reviewOverall } = survey;
+  const userId = uniqid();
+
+  await insertRows(
+    ((await createSpreadsheet(userId)).spreadsheetId),
+    [
+      [''].concat(symbols.allRatingStyles).concat(['reviewOverall', 'chosenRatings']),
+      ...selectedMovies.map(m => [m.name].concat(symbols.allRatingStyles.map(r => m[r])).concat([reviewOverall]).concat([m.chosenRatings.join(',')]) )
+    ]
+  );
+
+  await insertRows(
+    (await getOverallTableId()),
+    [
+      [
+        userId,
+        ...['talkative','faultWithOthers','thoroughJob','depressed'].map(i => personality[i])
+      ]
+    ]
+  );
+}
+
+async function test() {
+  try {
+    await processSurvey(require('./testdata.json'));
+  } catch(e) {
+    console.log(e);
+  }
+  console.log("Done");
+}

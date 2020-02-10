@@ -1,7 +1,7 @@
 import axios from "axios";
 import survey from "./survey"
 
-const API = "https://a1091713.ngrok.io";
+const API = "https://movie-survey.herokuapp.com/";
 
 export default {
   submit: async () => {
