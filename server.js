@@ -24,7 +24,8 @@ app.post('/submit', async (req, res, next) => {
   }
 });
 
-app.listen(8080, () => console.log('Listening on 8080'));
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Listening on ${port}`));
 
 //####################################
 // Google sheets
