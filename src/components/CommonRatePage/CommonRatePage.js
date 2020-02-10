@@ -51,8 +51,8 @@ class CommonRatePage extends React.Component {
                       <Rating
                         initialRating={commonRate}
                         stop={5}
-                        emptySymbol={symbols.common.empty}
-                        fullSymbol={symbols.common.full}
+                        emptySymbol={symbols.commonRate.empty}
+                        fullSymbol={symbols.commonRate.full}
                         onChange={this.handleChange(i)}
                       />
                   </ListGroup.Item>

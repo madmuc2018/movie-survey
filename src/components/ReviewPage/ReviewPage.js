@@ -38,7 +38,7 @@ class ReviewPage extends React.Component {
       const movie = this.getMovie();
       const selectedScores = this.getSelected();
       const chosenScores = [];
-      ["commonRate"].concat(symbols.ratingStyles)
+      symbols.allRatingStyles
         .forEach((r, i) => selectedScores.indexOf(movie[r]) > -1 && chosenScores.push(i));
       this.getMovie().chosenRatings = chosenScores;
 
@@ -59,7 +59,7 @@ class ReviewPage extends React.Component {
           <img src={movie.img} alt="Poster" height="400" width="240" />
           <h6>{movie.name}</h6>
           {
-            ["commonRate"].concat(symbols.ratingStyles).map((r, i) =>
+            symbols.allRatingStyles.map((r, i) =>
               <div key={i}>
                 <Row className="justify-content-md-center">
                   <Col xs lg="1">

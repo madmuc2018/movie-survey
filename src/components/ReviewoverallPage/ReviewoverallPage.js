@@ -17,7 +17,7 @@ class ReviewoverallPage extends React.Component {
     this.handleChange = event => {
       const { name, value } = event.target;
       this.setState({
-        [name]: value
+        [name]: parseInt(value)
       });
     }
 
@@ -25,10 +25,6 @@ class ReviewoverallPage extends React.Component {
       survey.get().reviewOverall = this.state.choice;
       survey.get().reviewSequence = utils.numberList(survey.get().selectedMovies.length);
       this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
-    }
-
-    this.handleBack = () => {
-      this.props.history.replace("/review");
     }
   }
 
@@ -38,11 +34,11 @@ class ReviewoverallPage extends React.Component {
         <Container>
           <h6>Your ratings will be considered very helpful into the final ratings provided by the studio, would you like to re-rate it again ? If so, which one of the rating scales would you use?</h6>
           {
-            symbols.ratingStyles.map((r, i) =>
+            symbols.allRatingStyles.map((r, i) =>
               <div key={i}>
                 <Row className="justify-content-md-center">
                   <Col xs lg="1">
-                    <input type="radio" name="choice" value={r} checked={this.state.choice === r} onChange={this.handleChange} />
+                    <input type="radio" name="choice" value={i} checked={this.state.choice === i} onChange={this.handleChange} />
                   </Col>
                   <Col xs lg="2">
                     {
@@ -60,7 +56,6 @@ class ReviewoverallPage extends React.Component {
               </div>
             )
           }
-          <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Submit</Button>
         </Container>
       </div>

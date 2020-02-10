@@ -1,6 +1,7 @@
 {
+    "allRatingStyles": ["commonRate","color-circle","color-star","color-emoji","circle","emoji"],
     "ratingStyles": ["color-circle","color-star","color-emoji","circle","emoji"],
-    "common": {
+    "commonRate": {
         "empty": [
             "fa fa-star-o fa-2x survey-yellow",
             "fa fa-star-o fa-2x survey-yellow",

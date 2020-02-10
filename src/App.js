@@ -62,7 +62,7 @@ const _reviewedMovie = array().of(obj({
   "chosenRatings": array().of(num).min(1)
 })).min(0);
 
-const _reviewOverall = str;
+const _reviewOverall = num;
 
 const selectSchema = obj({
   personality: _personality
