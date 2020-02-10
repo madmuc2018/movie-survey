@@ -7,8 +7,6 @@
     "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "build-deploy": "rm -rf build && npm run build && gh-pages -d build",
-    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.js server.js",
     "server": "nodemon -L server.js --ignore './src'"
