@@ -5,7 +5,6 @@ import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
 import utils from "../utils";
-import AsyncAwareContainer from "../AsyncAwareContainer";
 
 class ReviewoverallPage extends React.Component {
   constructor(props) {
@@ -22,18 +21,10 @@ class ReviewoverallPage extends React.Component {
       });
     }
 
-    this.handleNext = async () => {
-      try {
-        this.setState({loading: 'Submitting ...'});
-        survey.get().reviewOverall = this.state.choice;
-        survey.get().reviewSequence = utils.numberList(survey.get().selectedMovies.length);
-        this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
-      } catch (error) {
-        alert(error.message);
-      } finally {
-        if (!this.componentUnmounted)
-          this.setState({loading: undefined});
-      }
+    this.handleNext = () => {
+      survey.get().reviewOverall = this.state.choice;
+      survey.get().reviewSequence = utils.numberList(survey.get().selectedMovies.length);
+      this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
     }
 
     this.handleBack = () => {
@@ -41,13 +32,9 @@ class ReviewoverallPage extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.componentUnmounted = true;
-  }
-
   render() {
     return (
-      <AsyncAwareContainer loading={this.state.loading}>
+      <div>
         <Container>
           <h6>Your ratings will be considered very helpful into the final ratings provided by the studio, would you like to re-rate it again ? If so, which one of the rating scales would you use?</h6>
           {
@@ -76,7 +63,7 @@ class ReviewoverallPage extends React.Component {
           <Button style={{"float":"left"}} onClick={this.handleBack}>Back</Button>
           <Button style={{"float":"right"}} onClick={this.handleNext}>Submit</Button>
         </Container>
-      </AsyncAwareContainer>
+      </div>
     );
   }
 }

@@ -46,7 +46,7 @@ class ReviewPage extends React.Component {
         this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
         return this.setState({selected: {}});
       }
-      this.props.history.replace(`/email`);
+      this.props.history.replace(`/askemail`);
     }
   }
 

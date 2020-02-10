@@ -7,8 +7,10 @@ import SelectMoviesPage from "./components/SelectMoviesPage/SelectMoviesPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import ReviewoverallPage from "./components/ReviewoverallPage/ReviewoverallPage";
+import AskEmailPage from "./components/AskEmailPage/AskEmailPage";
 import EmailPage from "./components/EmailPage/EmailPage";
 import RatePage from "./components/RatePage/RatePage";
+import EndPage from "./components/EndPage/EndPage";
 import ErrorPage from "./ErrorPage";
 
 import { string, object, number, array } from 'yup';
@@ -57,7 +59,7 @@ const _reviewedMovie = array().of(obj({
   "color-emoji": num,
   "circle": num,
   "emoji": num,
-  "chosenRatings": array().of(num)
+  "chosenRatings": array().of(num).min(1)
 })).min(0);
 
 const _reviewOverall = str;
@@ -92,13 +94,19 @@ const emailSchema = obj({
   reviewOverall: _reviewOverall
 });
 
+const askEmailSchema = emailSchema;
+
+const endSchema = emailSchema;
+
 const schemas = {
   "/select": selectSchema,
   "/common": commonSchema,
   "/rate/:movieid/:ratingstyle": rateSchema,
   "/reviewoverall": reviewoverallSchema,
   "/review/:movieid": reviewEachSchema,
-  "/email": emailSchema
+  "/askemail": askEmailSchema,
+  "/email": emailSchema,
+  "/end": endSchema
 };
 
 function RestrictedRoute({ component: Component, ...rest }) {
@@ -152,7 +160,9 @@ export default class App extends React.Component {
             <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
             <RestrictedRoute exact path="/common" component={CommonRatePage} />
             <RestrictedRoute exact path="/reviewoverall" component={ReviewoverallPage} />
+            <RestrictedRoute exact path="/askemail" component={AskEmailPage} />
             <RestrictedRoute exact path="/email" component={EmailPage} />
+            <RestrictedRoute exact path="/end" component={EndPage} />
             <RestrictedRoute exact path="/rate/:movieid/:ratingstyle" component={RatePage} />
             <RestrictedRoute exact path="/review/:movieid" component={ReviewPage} />
           </Switch>
