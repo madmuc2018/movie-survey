@@ -30,11 +30,17 @@ class RatePage extends React.Component {
         return alert("Please rate the movie");
       }
 
+      if (survey.get().navSequence.length ===
+          (survey.get().selectedMovies.length * symbols.ratingStyles.length) / 2) {
+          return this.props.history.replace(`/sadhappy2`);
+        }
+
       if (survey.get().navSequence.length > 0) {
         const { movieid, ratingstyle } = survey.get().navSequence.pop();
         return this.props.history.replace(`/rate/${movieid}/${ratingstyle}`);
       }
-      return this.props.history.replace(`/reviewoverall`);
+
+      return this.props.history.replace(`/sadhappy3`);
     }
   }
 

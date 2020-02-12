@@ -3,6 +3,7 @@ import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
 import { Beforeunload } from 'react-beforeunload';
 
 import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
+import SadHappyPage from "./components/SadHappyPage/SadHappyPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import ReviewoverallPage from "./components/ReviewoverallPage/ReviewoverallPage";
@@ -63,7 +64,7 @@ const _reviewedMovie = array().of(obj({
 
 const _reviewOverall = num;
 
-const selectSchema = obj({
+const sadHappy1Schema = obj({
   personality: _personality
 });
 
@@ -75,10 +76,14 @@ const commonSchema = obj({
 
 const rateSchema = commonSchema;
 
+const sadHappy2Schema = commonSchema;
+
 const reviewoverallSchema = obj({
   personality: _personality,
   selectedMovies: _ratedMovie
 });
+
+const sadHappy3Schema = reviewoverallSchema;
 
 const reviewEachSchema = obj({
   personality: _personality,
@@ -98,6 +103,9 @@ const askEmailSchema = emailSchema;
 const endSchema = emailSchema;
 
 const schemas = {
+  "/sadhappy1": sadHappy1Schema,
+  "/sadhappy2": sadHappy2Schema,
+  "/sadhappy3": sadHappy3Schema,
   "/common": commonSchema,
   "/rate/:movieid/:ratingstyle": rateSchema,
   "/reviewoverall": reviewoverallSchema,
@@ -126,6 +134,24 @@ function RestrictedRoute({ component: Component, ...rest }) {
           let transition;
           try {
             schema.validateSync(survey.get());
+
+            switch(props.match.path) {
+              case "/sadhappy1":
+                props.saveAs = "sadhappy1";
+                props.nextRoute = "/common";
+                break;
+              case "/sadhappy2":
+                props.saveAs = "sadhappy2";
+                const { movieid, ratingstyle } = survey.get().navSequence.pop();
+                props.nextRoute = `/rate/${movieid}/${ratingstyle}`;
+                break;
+              case "/sadhappy3":
+                props.saveAs = "sadhappy3";
+                props.nextRoute = "/reviewoverall";
+                break;
+              default: break;
+            }
+
             transition = <Component {...props} />
           } catch(err) {
             alert(err);
@@ -155,6 +181,9 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/" component={PersonalityPage} />
             <Route exact path="/error" component={ErrorPage} />
+            <RestrictedRoute exact path="/sadhappy1" component={SadHappyPage} />
+            <RestrictedRoute exact path="/sadhappy2" component={SadHappyPage} />
+            <RestrictedRoute exact path="/sadhappy3" component={SadHappyPage} />
             <RestrictedRoute exact path="/common" component={CommonRatePage} />
             <RestrictedRoute exact path="/reviewoverall" component={ReviewoverallPage} />
             <RestrictedRoute exact path="/askemail" component={AskEmailPage} />
