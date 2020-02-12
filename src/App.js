@@ -5,6 +5,7 @@ import { Beforeunload } from 'react-beforeunload';
 import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
 import SadHappyPage from "./components/SadHappyPage/SadHappyPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
+import ExplainReviewPage from "./components/ExplainReviewPage/ExplainReviewPage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import ReviewoverallPage from "./components/ReviewoverallPage/ReviewoverallPage";
 import AskEmailPage from "./components/AskEmailPage/AskEmailPage";
@@ -92,6 +93,8 @@ const reviewEachSchema = obj({
   reviewSequence : _reviewSeq
 });
 
+const explainReviewSchema = reviewEachSchema;
+
 const emailSchema = obj({
   personality: _personality,
   selectedMovies: _reviewedMovie,
@@ -109,6 +112,7 @@ const schemas = {
   "/common": commonSchema,
   "/rate/:movieid/:ratingstyle": rateSchema,
   "/reviewoverall": reviewoverallSchema,
+  "/explainreview": explainReviewSchema,
   "/review/:movieid": reviewEachSchema,
   "/askemail": askEmailSchema,
   "/email": emailSchema,
@@ -186,6 +190,7 @@ export default class App extends React.Component {
             <RestrictedRoute exact path="/sadhappy3" component={SadHappyPage} />
             <RestrictedRoute exact path="/common" component={CommonRatePage} />
             <RestrictedRoute exact path="/reviewoverall" component={ReviewoverallPage} />
+            <RestrictedRoute exact path="/explainreview" component={ExplainReviewPage} />
             <RestrictedRoute exact path="/askemail" component={AskEmailPage} />
             <RestrictedRoute exact path="/email" component={EmailPage} />
             <RestrictedRoute exact path="/end" component={EndPage} />

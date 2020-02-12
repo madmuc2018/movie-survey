@@ -4,7 +4,6 @@ import survey from "../../Data/survey";
 import Rating from "react-rating";
 import "../survey.css";
 import symbols from "../symbols.json";
-import utils from "../utils";
 
 class ReviewoverallPage extends React.Component {
   constructor(props) {
@@ -23,8 +22,7 @@ class ReviewoverallPage extends React.Component {
 
     this.handleNext = () => {
       survey.get().reviewOverall = this.state.choice;
-      survey.get().reviewSequence = utils.numberList(survey.get().selectedMovies.length);
-      this.props.history.replace(`/review/${survey.get().reviewSequence.shift()}`);
+      this.props.history.replace(`/explainreview`);
     }
   }
 
