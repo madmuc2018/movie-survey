@@ -3,7 +3,6 @@ import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
 import { Beforeunload } from 'react-beforeunload';
 
 import PersonalityPage from "./components/PersonalityPage/PersonalityPage";
-import SelectMoviesPage from "./components/SelectMoviesPage/SelectMoviesPage";
 import CommonRatePage from "./components/CommonRatePage/CommonRatePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import ReviewoverallPage from "./components/ReviewoverallPage/ReviewoverallPage";
@@ -99,7 +98,6 @@ const askEmailSchema = emailSchema;
 const endSchema = emailSchema;
 
 const schemas = {
-  "/select": selectSchema,
   "/common": commonSchema,
   "/rate/:movieid/:ratingstyle": rateSchema,
   "/reviewoverall": reviewoverallSchema,
@@ -157,7 +155,6 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/" component={PersonalityPage} />
             <Route exact path="/error" component={ErrorPage} />
-            <RestrictedRoute exact path="/select" component={SelectMoviesPage} />
             <RestrictedRoute exact path="/common" component={CommonRatePage} />
             <RestrictedRoute exact path="/reviewoverall" component={ReviewoverallPage} />
             <RestrictedRoute exact path="/askemail" component={AskEmailPage} />

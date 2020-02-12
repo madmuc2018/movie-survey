@@ -1,162 +1,49 @@
-[
-	{
-		"name": "Avengers: Endgame (2019)",
-		"img": "https://images.hdqwalls.com/download/2019-avengers-endgame-cm-240x400.jpg"
-	},
-	{
+[{
 		"name": "Joker (2019)",
 		"img": "https://wallpapercan.com/download/240x400/299c8eac/joker-2019-movie.jpg"
 	},
 	{
-		"name": "It(2017)",
-		"img": "https://images.hdqwalls.com/download/pennywise-the-clown-it-2017-movie-4k-hp-240x400.jpg"
-	},
-	{
-		"name": "Frozen (2013)",
-		"img": "https://i.pinimg.com/originals/0e/b0/6b/0eb06bbdc1b0f11a32bba45684ca7043.jpg"
-	},
-	{
-		"name": "Avengers: Infinity War(2018)",
-		"img": "https://images.hdqwalls.com/download/avengers-infinity-war-2018-4k-poster-06-240x400.jpg"
-	},
-	{
-		"name": "Black Panther (2018)",
-		"img": "https://wallpapersmug.com/download/240x400/2d71ba/black-panther-2018-movie-4k.jpg"
-	},
-	{
-		"name": "Bumblebee(2018)",
-		"img": "https://images.hdqwalls.com/download/bumblebee-movie-poster-wf-240x400.jpg"
-	},
-	{
-		"name": "Crazy Rich Asians(2018)",
-		"img": "https://www.videolesxi.gr/thumbs/16370.jpg"
-	},
-	{
-		"name": "Beauty and the Beast (2017)",
-		"img": "https://images.hdqwalls.com/download/beauty-and-the-beast-4k-qu-240x400.jpg"
-	},
-	{
-		"name": "Aquaman (2018)",
-		"img": "https://wallpapercan.com/download/240x400/7d8160cd/movie-aquaman-jason-momoa-sharks.jpg"
-	},
-	{
-		"name": "Guardians of Galaxy Franchise",
-		"img": "https://wallpapersmug.com/download/240x400/e9c066/guardians-of-the-galaxy-4k-art.jpg"
-	},
-	{
-		"name": "Wonder Woman",
-		"img": "https://lh3.googleusercontent.com/proxy/MILjLrWWuNXtXzNQy4AHhjHIA8Cq-fOdrpnXceYgFegVCqF-YQtNvc3Jj3EC-8X6RLgKG4uin6KjdadbAnluJb3hHZtlGm4JNZmsEPA0C_H7FFVWNFX-KSDa"
-	},
-	{
-		"name": "Despicable Me series",
-		"img": "https://images.hdqwalls.com/download/despicable-me-3-2017-4k-9y-240x400.jpg"
-	},
-	{
-		"name": "Fast and Furious franchise",
-		"img": "https://phoneky.co.uk/thumbs/wallpapers/p2/movies/15/78c4b38012655022.jpg"
-	},
-	{
-		"name": "Captain America: Civil War(2016)",
-		"img": "https://lh5.googleusercontent.com/proxy/tgkgFzALIKWvB7KLcsfVMIuddUxTT36d4EY_wiqE_XkpWufxuV22efbbqax8p6964MwtBNDslGRvYjbbzvhSDTenmoSZCID5NaImMbKnHLQ8cBk3O6NuR7erUiALTsQuR5J0Qnp1IA"
-	},
-	{
-		"name": "Suicide Squad(2016)",
-		"img": "https://images.wallpapersden.com/image/download/the-suicide-squad-art_66841_240x400.jpg"
+		"name": "Gone Girl(2014)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/0/05/Gone_Girl_Poster.jpg"
 	},
 	{
 		"name": "Deadpool(2016)",
 		"img": "https://www.dvd-trailers.gr/dvd/deadpool_2016.jpg"
 	},
 	{
-		"name": "Zootopia(2016)",
-		"img": "https://www.dvd-trailers.gr/dvd/zooupoli_2016.jpg"
+		"name": "Aladdin (2019)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/9/9a/Aladdin_%28Official_2019_Film_Poster%29.png"
 	},
+
 	{
-		"name": "The Martian(2015)",
-		"img": "https://www.dvd-trailers.gr/dvd/i_diasosi_2015.jpg"
+		"name": "Captain Marvel (2019)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/8/85/Captain_Marvel_poster.jpg"
 	},
+
 	{
-		"name": "Skyfall(2012)",
-		"img": "https://www.picclickimg.com/d/l400/pict/293265867570_/James-Bond-007-Skyfall-One-Sheet-Poster-Signed.jpg"
+		"name": "Bird Box(2018)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/b/bd/Bird_Box_%28film%29.png"
 	},
+
+
 	{
-		"name": "Jurassic World (2015)",
-		"img": "https://www.dvd-trailers.gr/dvd/jurassic_world_2015.jpg"
+		"name": "The Emoji Movie(2017)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/6/63/The_Emoji_Movie_film_poster.jpg"
 	},
-	{
-		"name": "Interstellar(2014)",
-		"img": "https://lh5.googleusercontent.com/proxy/ymAx7dezcB0L4qyqlLPInx_F_SSk_ed6M3dTzltFWgczv3rWOzHxn72tJ6Ft2vqL0c6HT08KlgOKPDbZKQL2aEbXCEXnLMwb8Kq1kekk8G8z83xpEv2_UdHvDuvrtA"
-	},
-	{
-		"name": "How to Train your Dragon 2 (2014)",
-		"img": "https://lh3.googleusercontent.com/proxy/L2WDvBAWLmcKNeswFxzafSOsAhKeuVBPG_T8uFT9Z1iAbwyPzj6y8WTERHtLa4P0UxvCFNwLWftu246nMZOimfo7e8iVy52gmOXNSblMV6qPd4jwKu-ArooXh3KHKZnnCvLEPF6288pNBAlV_Gz76os"
-	},
-	{
-		"name": "The Amazing spider-man (2014)",
-		"img": "https://downloadwap.com/thumbs2/wallpapers/p2/15/movies/xpwz4i64.jpg"
-	},
-	{
-		"name": "World War Z (2013)",
-		"img": "https://www.videolesxi.gr/thumbs/8603.jpg"
-	},
-	{
-		"name": "Gravity (2013)",
-		"img": "https://www.dvd-trailers.gr/posters/gravity_2013.jpg"
-	},
-	{
-		"name": "The Hobbit: An Unexpected Journey(2012)",
-		"img": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/6062/9780606262408.jpg"
-	},
-	{
-		"name": "Harry Potter and the Deathly Hallows Part 2.",
-		"img": "https://www.picclickimg.com/d/l400/pict/382985349328_/2-Harry-Potter-40x27-D-S-Movie-Posters-Deathly.jpg"
-	},
+
 	{
 		"name": "Clash of The Titans(2010)",
 		"img": "https://1.bp.blogspot.com/_Z3BUX71Sca8/S7avZb1rQLI/AAAAAAAAJv4/ap3fGeACzYw/s400/clashofthetitans-11.jpg"
 	},
+
 	{
-		"name": "The Twilight Saga: Breaking Dawn part 1",
-		"img": "https://a-static.besthdwallpaper.com/the-twilight-saga-breaking-dawn-wallpaper-240x400-12673_194.jpg"
+		"name": "Fifty Shades of Grey(2015)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/7/73/Fifty_Shades_of_Grey_poster.jpg"
 	},
+
 	{
-		"name": "Avatar (2009)",
-		"img": "https://www.dvd-trailers.gr/dvd/avatar_2009.jpg"
-	},
-	{
-		"name": "Step Up",
-		"img": "https://www.picclickimg.com/d/l400/pict/123794510010_/Step-Up-Step-Up-2-The-Streets-DVD-2008.jpg"
-	},
-	{
-		"name": "300 (2007)",
-		"img": "https://i.pinimg.com/originals/bf/77/da/bf77da17fdeaedbbdafaa2fc60099308.jpg"
-	},
-	{
-		"name": "The Da Vinci Code(2006)",
-		"img": "https://www.picclickimg.com/d/l400/pict/283560801521_/The-Da-Vinci-Code-%E2%80%93-Sakrileg-very-rare.jpg"
-	},
-	{
-		"name": "King Kong (2005)",
-		"img": "https://www.videolesxi.gr/thumbs/720.jpg"
-	},
-	{
-		"name": "The Chronicles of Narnia",
-		"img": "https://lh6.googleusercontent.com/proxy/RV7c1yZgGoJVVVvRRzrdORxVfhBz-iKj6b-sTmmHXxmBFiGpvqTEkBpUDii7wwwljmUJdDd-7dHGLIJuwE257Pk7gJlywMcKhhZCD7qCisVHEasF0XRzWdPJuDlQ-4lurWBFki01HexLirHWZPrbTNRoAw"
-	},
-	{
-		"name": "Van Helsing",
-		"img": "https://prodigits.co.uk/thumbs/wallpapers/p2/fcelebs/15/9ab51d9c12256001.jpg"
-	},
-	{
-		"name": "Finding Nemo(2003)",
-		"img": "https://i.pinimg.com/originals/71/b2/37/71b2379b1010282d283c21f1079016fb.jpg"
-	},
-	{
-		"name": "The Matrix Franchise",
-		"img": "https://images.hdqwalls.com/download/matrix-trilogy-5k-95-240x400.jpg"
-	},
-	{
-		"name": "The Conjuring (2013)",
-		"img": "https://lh4.googleusercontent.com/proxy/pYLhDuBn2f0AOMUMvMctfSXHmwkyKKhGZ0I1tekucoDRE4D0xR8S69P1s8DYI4dBNIhFCzeaZEOGOeVYElI7U_UAFmwkUwcYVSpjNknbDBbzNJ9KQlJzlMAb997fkuPff-3qcA"
+		"name": "Twilight(2008)",
+		"img": "https://upload.wikimedia.org/wikipedia/en/b/b6/Twilight_%282008_film%29_poster.jpg"
 	}
+
 ]

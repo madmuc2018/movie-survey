@@ -24,7 +24,7 @@ class CommonRatePage extends React.Component {
     this.handleBack = () => {
       if (window.confirm('Are you sure? All selected movies will be cleared')) {
         survey.retain("personality");
-        this.props.history.replace(`/select`);
+        this.props.history.replace(`/`);
       }
     }
   }

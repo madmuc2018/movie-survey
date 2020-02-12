@@ -24,7 +24,7 @@ class PersonalityPage extends React.Component {
 
     this.handleNext = () => {
       survey.get().personality = utils.clone(this.state);
-      this.props.history.replace("/select");
+      this.props.history.replace("/common");
     }
   }
 

@@ -1,9 +1,28 @@
+import movies from "./movies.json";
+import symbols from "../components/symbols.json";
+import utils from "../components/utils";
+import shuffle from "shuffle-array";
+
 let survey;
 
 export default {
 	get: () => {
     if (!survey) {
       survey = {};
+      survey.selectedMovies = movies;
+      const movieids = utils.numberList(movies.length);
+      const ratingstyles = symbols.ratingStyles;
+
+      survey.navSequence = [];
+      movieids.forEach(movieid =>
+        ratingstyles.forEach(ratingstyle =>
+          survey.navSequence.push({
+            movieid,
+            ratingstyle
+          })
+        )
+      );
+      shuffle(survey.navSequence);
     }
     return survey;
   },
