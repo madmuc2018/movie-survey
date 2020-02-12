@@ -67,30 +67,30 @@
     },
     "circle":{ 
         "empty":[ 
-            "far fa-circle fa-2x",
-            "far fa-circle fa-2x",
-            "far fa-circle fa-2x",
-            "far fa-circle fa-2x",
-            "far fa-circle fa-2x"
+            "far fa-circle fa-2x survey-blue",
+            "far fa-circle fa-2x survey-blue",
+            "far fa-circle fa-2x survey-blue",
+            "far fa-circle fa-2x survey-blue",
+            "far fa-circle fa-2x survey-blue"
         ],
         "full":[ 
-            "fas fa-circle fa-2x",
-            "fas fa-circle fa-2x",
-            "fas fa-circle fa-2x",
-            "fas fa-circle fa-2x",
-            "fas fa-circle fa-2x"
+            "fas fa-circle fa-2x survey-blue",
+            "fas fa-circle fa-2x survey-blue",
+            "fas fa-circle fa-2x survey-blue",
+            "fas fa-circle fa-2x survey-blue",
+            "fas fa-circle fa-2x survey-blue"
         ]
     },
     "emoji":{ 
         "empty":[ 
-            "far fa-angry fa-2x survey-blue",
+            "far fa-frown-open fa-2x survey-blue",
             "far fa-frown fa-2x survey-blue",
             "far fa-meh fa-2x survey-blue",
             "far fa-smile fa-2x survey-blue",
             "far fa-grin fa-2x survey-blue"
         ],
         "full":[ 
-            "fas fa-angry fa-2x survey-blue",
+            "fas fa-frown-open fa-2x survey-blue",
             "fas fa-frown fa-2x survey-blue",
             "fas fa-meh fa-2x survey-blue",
             "fas fa-smile fa-2x survey-blue",
