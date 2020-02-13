@@ -72,7 +72,8 @@ const sadHappy1Schema = obj({
 const commonSchema = obj({
   personality: _personality,
   selectedMovies: _movie,
-  navSequence: _navSeq
+  navSequence: _navSeq,
+  sadhappy1: str
 });
 
 const rateSchema = commonSchema;
@@ -81,7 +82,9 @@ const sadHappy2Schema = commonSchema;
 
 const reviewoverallSchema = obj({
   personality: _personality,
-  selectedMovies: _ratedMovie
+  selectedMovies: _ratedMovie,
+  sadhappy1: str,
+  sadhappy2: str
 });
 
 const sadHappy3Schema = reviewoverallSchema;
@@ -90,7 +93,10 @@ const reviewEachSchema = obj({
   personality: _personality,
   selectedMovies: _ratedMovie,
   reviewOverall: _reviewOverall,
-  reviewSequence : _reviewSeq
+  reviewSequence : _reviewSeq,
+  sadhappy1: str,
+  sadhappy2: str,
+  sadhappy3: str
 });
 
 const explainReviewSchema = reviewEachSchema;
@@ -98,7 +104,10 @@ const explainReviewSchema = reviewEachSchema;
 const emailSchema = obj({
   personality: _personality,
   selectedMovies: _reviewedMovie,
-  reviewOverall: _reviewOverall
+  reviewOverall: _reviewOverall,
+  sadhappy1: str,
+  sadhappy2: str,
+  sadhappy3: str
 });
 
 const askEmailSchema = emailSchema;

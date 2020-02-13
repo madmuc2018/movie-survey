@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const uniqid = require('uniqid');
 const symbols = require('./src/components/symbols.json');
+// const jsonfile = require('jsonfile');
 
 const app = express();
 app.use(cors());
@@ -139,7 +140,7 @@ async function getOverallTableId() {
   const overallSheet = await createSpreadsheet('Overall');
   await insertRows(overallSheet.spreadsheetId,
     [
-      ['userId', 'talkative','faultWithOthers','thoroughJob','depressed']
+      ['userId', 'talkative','faultWithOthers','thoroughJob','depressed','sadhappy1','sadhappy2','sadhappy3']
     ]
   );
   // await boldFirstRowAndColumn(overallSheet.spreadsheetId);
@@ -202,7 +203,7 @@ async function deleteAllFiles() {
 }
 
 async function processSurvey(survey) {
-  const { personality, selectedMovies, reviewOverall } = survey;
+  const { personality, selectedMovies, reviewOverall, sadhappy1, sadhappy2, sadhappy3 } = survey;
   const userId = uniqid();
 
   await insertRows(
@@ -218,7 +219,10 @@ async function processSurvey(survey) {
     [
       [
         userId,
-        ...['talkative','faultWithOthers','thoroughJob','depressed'].map(i => personality[i])
+        ...['talkative','faultWithOthers','thoroughJob','depressed'].map(i => personality[i]),
+        sadhappy1,
+        sadhappy2,
+        sadhappy3
       ]
     ]
   );
