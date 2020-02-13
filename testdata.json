@@ -1,0 +1,54 @@
+{
+    "selectedMovies":[
+        {
+            "name":"Joker (2019)",
+            "img":"https://wallpapercan.com/download/240x400/299c8eac/joker-2019-movie.jpg",
+            "commonRate":3,
+            "color-circle":5,
+            "color-star":5,
+            "circle":5,
+            "emoji":5,
+            "color-emoji":5,
+            "chosenRatings":[
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "name":"Gone Girl(2014)",
+            "img":"https://upload.wikimedia.org/wikipedia/en/0/05/Gone_Girl_Poster.jpg",
+            "commonRate":2,
+            "color-star":2,
+            "circle":5,
+            "color-circle":5,
+            "color-emoji":5,
+            "emoji":5,
+            "chosenRatings":[
+                1,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "navSequence":[
+
+    ],
+    "personality":{
+        "talkative":0,
+        "faultWithOthers":0,
+        "thoroughJob":0,
+        "depressed":0
+    },
+    "sadhappy1":1,
+    "sadhappy2":2,
+    "sadhappy3":3,
+    "reviewOverall":1,
+    "reviewSequence":[
+
+    ]
+}
